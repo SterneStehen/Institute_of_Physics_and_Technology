@@ -10,6 +10,41 @@ typedef struct Node
 	struct Node * prev;	
 }Node;
 
+void ft_print_dbg(Node * list)
+{
+	Node * p;
+	p = list->next;
+	printf("------------------\n");
+	printf("list= _, prev = %p, curr = %p, next = %p\n", list->prev, list, list->next);
+	while (p != list)
+	{
+		printf("num = %d, prev = %p, curr = %p, next = %p\n", p->num, p->prev, &p->num, p->next);
+		p = p->next;
+	}
+}
+
+void ft_print(Node * list)
+{
+	Node * p;
+	p = list->next;
+	while (p != list)
+	{
+		printf("%d ", p->num);
+		p = p->next;
+	}
+	printf("\n");
+}
+void ft_print_revers(Node * list)
+{
+	Node * p;
+	p = list->prev;
+	while (p != list)
+	{
+		printf("%d ", p->num);
+		p = p->prev;
+	}
+	printf("\n");
+}
 
 int main()
 {
@@ -25,16 +60,16 @@ int main()
 	z.next = &a;
 	z.prev = &c;
 
-	printf("%d ", a.num);
-	printf("%d ", b.num);
-	printf("%d ", c.num);
-	printf("\n");
+	ft_print(list);
+	ft_print_revers(list);
+	ft_print_dbg(list);
+	
+	// printf("%d\n", p->num);
+	// p = p->next;
+	// printf("%d\n", p->num);
+	// p = p->next;
+	// printf("%d\n", p->num);
 
-	Node * p;
-	p = list->next;
-	printf("%d\n", p->num);
-	p = p->next;
-	printf("%d\n", p->num);
-	p = p->next;
-	printf("%d\n", p->num);
+	
+	
 }
