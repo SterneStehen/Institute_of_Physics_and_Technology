@@ -54,21 +54,19 @@ void ft_insert(Node *a, Node * t)
 	t->prev = a;
 	a->next = t;
 	b->prev = t;
-	
-	
+}
 
-	// tmp->next = t;
-	// t->prev = tmp;
-	// tmp = tmp->next;
-	// tmp = tmp->next;
-	// t->next = tmp;
-	// tmp->prev = t;
-	// free(tmp);
+void  ft_remove(Node * list)
+{
+	Node *a = list->prev;
+	Node *b = list->next;
+	a->next = b;
+	b->prev = a;
 }
 
 int ft_is_empty(Node * list)
 {
-	return (list->next == list->prev);
+	return (list->next == list && list->prev == list);
 }
 
 void ft_init(Node * list)
@@ -79,20 +77,12 @@ void ft_init(Node * list)
 
 int main()
 {
-	Node z = {0}, a = {3}, b = {17}, c = {21}, u = {10};
+	Node z, a, b, c, u;
+	z.num = 0, a.num = 3, b.num = 17, c.num = 21, u.num = 10;
 	Node * list = &z;
 	
-	// a.next = &b;
-	// a.prev = &z;
-	// b.next = &c;
-	// b.prev = &a;
-	// c.next = &z;
-	// c.prev = &b;
-	// z.next = &a;
-	// z.prev = &c;
-
 	ft_init(list);
-
+	printf("list is epty = %s\n", ft_is_empty(list) ? "YES" : "NO");
 	ft_insert(&z, &a);
 	ft_print(list);
 	ft_insert(&a, &b);
@@ -104,5 +94,10 @@ int main()
 	ft_print(list);
 	ft_print_revers(list);
 	ft_print_dbg(list);
-	
+
+	ft_remove(&u);
+	printf("list is epty = %s\n", ft_is_empty(list) ? "YES" : "NO");
+	ft_print(list);
+	ft_print_revers(list);
+
 }
